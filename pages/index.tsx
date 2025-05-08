@@ -81,7 +81,6 @@ export default function Home() {
       {
         role: "assistant",
         content: '🟢 Welcome, Handler. Ready to begin your Geo-Sniffing mission? Type “start” to see your first objective.'
-`
       }
     ]);
   };
