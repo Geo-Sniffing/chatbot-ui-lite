@@ -80,7 +80,8 @@ export default function Home() {
     setMessages([
       {
         role: "assistant",
-        content: `Hi there! I'm Chatbot UI, an AI assistant. I can help you with things like answering questions, providing information, and helping with tasks. How can I help you?`
+        content: '🟢 Welcome, Handler. Ready to begin your Geo-Sniffing mission? Type “start” to see your first objective.'
+`
       }
     ]);
   };
@@ -93,7 +94,7 @@ export default function Home() {
     setMessages([
       {
         role: "assistant",
-        content: `Hi there! I'm Chatbot UI, an AI assistant. I can help you with things like answering questions, providing information, and helping with tasks. How can I help you?`
+        content: '🟢 Welcome, Handler. Ready to begin your Geo-Sniffing mission? Type “start” to see your first objective.'
       }
     ]);
   }, []);
