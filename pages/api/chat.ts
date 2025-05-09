@@ -11,9 +11,17 @@ const handler = async (req: Request): Promise<Response> => {
       messages: Message[];
     };
 
+    const systemPrompt = process.env.DEFAULT_SYSTEM_PROMPT || "You are a helpful assistant.";
+
+    // Add system message to the start
+    const systemMessage: Message = {
+      role: "system",
+      content: systemPrompt
+    };
+
     const charLimit = 12000;
-    let charCount = 0;
-    let messagesToSend = [];
+    let charCount = systemMessage.content.length;
+    let messagesToSend: Message[] = [systemMessage];
 
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i];
@@ -25,7 +33,6 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const stream = await OpenAIStream(messagesToSend);
-
     return new Response(stream);
   } catch (error) {
     console.error(error);
