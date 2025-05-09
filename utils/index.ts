@@ -1,6 +1,3 @@
-import { Message, OpenAIModel } from "@/types";
-import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
-
 export const OpenAIStream = async (messages: Message[]) => {
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
@@ -13,13 +10,7 @@ export const OpenAIStream = async (messages: Message[]) => {
     method: "POST",
     body: JSON.stringify({
       model: OpenAIModel.DAVINCI_TURBO,
-      messages: [
-        {
-          role: "system",
-          content: `You are a helpful, friendly, assistant.`
-        },
-        ...messages
-      ],
+      messages, // ✅ Use incoming messages as-is
       max_tokens: 800,
       temperature: 0.0,
       stream: true
