@@ -9,7 +9,7 @@ export const OpenAIStream = async (messages: Message[]) => {
     },
     method: "POST",
     body: JSON.stringify({
-      model: OpenAIModel.DAVINCI_TURBO,
+      model: "gpt-4" // or "gpt-3.5-turbo",
       messages, // ✅ Use incoming messages as-is
       max_tokens: 800,
       temperature: 0.0,
