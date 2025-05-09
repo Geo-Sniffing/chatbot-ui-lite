@@ -13,11 +13,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     const messagesToSend: Message[] = [
       {
-        role: "system",
+        role: "system" as const,
         content: systemPrompt
       },
       {
-        role: "user",
+        role: "user" as const,
         content: "whats the weather like?"
       }
     ];
