@@ -14,16 +14,16 @@ const handler = async (req: Request): Promise<Response> => {
     const systemPrompt = process.env.DEFAULT_SYSTEM_PROMPT || "You are a helpful assistant.";
 
     // Add system message to the start
-    const systemMessage: Message = [
+    const systemMessage: Message = [] = [
       {
       role: "system",
       content: systemPrompt
-    };
+    },
     {
       role: "user",
       content: "whats the weather like?"
     }
-    ]
+    ];
     const charLimit = 12000;
     let charCount = systemMessage.content.length;
     let messagesToSend: Message[] = [systemMessage];
