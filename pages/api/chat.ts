@@ -7,32 +7,27 @@ export const config = {
 
 const handler = async (req: Request): Promise<Response> => {
   try {
-    const { messages } = (await req.json()) as {
-      messages: Message[];
-    };
+    const { messages } = (await req.json()) as { messages: Message[] };
 
     const systemPrompt = process.env.DEFAULT_SYSTEM_PROMPT || "You are a helpful assistant.";
 
-    // Add system message to the start
-    const systemMessage: Message = [] = [
+    const messagesToSend: Message[] = [
       {
-      role: "system",
-      content: systemPrompt
-    },
-    {
-      role: "user",
-      content: "whats the weather like?"
-    }
+        role: "system",
+        content: systemPrompt
+      },
+      {
+        role: "user",
+        content: "whats the weather like?"
+      }
     ];
+
+    let charCount = messagesToSend.reduce((sum, m) => sum + m.content.length, 0);
     const charLimit = 12000;
-    let charCount = systemMessage.content.length;
-    let messagesToSend: Message[] = [systemMessage];
 
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i];
-      if (charCount + message.content.length > charLimit) {
-        break;
-      }
+      if (charCount + message.content.length > charLimit) break;
       charCount += message.content.length;
       messagesToSend.push(message);
     }
